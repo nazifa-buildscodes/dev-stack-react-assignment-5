@@ -24,7 +24,7 @@ const TechnologyList = ({
     >
       <div className="section-heading">
         <h2>
-          Explore the <span>Technologies</span>
+          Explore The <span>Technologies</span>
         </h2>
 
         <p>
