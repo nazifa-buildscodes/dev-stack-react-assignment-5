@@ -18,7 +18,7 @@ const StackSidebar = ({
 
       {selectedStack.length === 0 ? (
         <div className="empty-stack">
-          <h3>Your stack is empty.</h3>
+          <h3> Stack is empty yet.</h3>
 
           <p>
             Add technologies from the list to build your stack.
