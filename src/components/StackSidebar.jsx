@@ -1,26 +1,28 @@
 const StackSidebar = ({
   selectedStack,
   onRemoveFromStack,
-  onRemoveAll
+  onRemoveAll,
 }) => {
   return (
     <aside className="stack-sidebar">
-
       <div className="stack-heading">
-  <h3>Your Stack</h3>
+        <h3>Your Stack</h3>
 
-  <p>
-    {selectedStack.length} Technology
-    {selectedStack.length === 1 ? "" : "ies"} Selected
-  </p>
-</div>
+        <p>
+          {selectedStack.length}{" "}
+          {selectedStack.length === 1
+            ? "Technology Selected"
+            : "Technologies Selected"}
+        </p>
+      </div>
 
       {selectedStack.length === 0 ? (
         <div className="empty-stack">
-          <p>Your stack is empty.</p>
-          <span>
+          <h3>Your stack is empty.</h3>
+
+          <p>
             Add technologies from the list to build your stack.
-          </span>
+          </p>
         </div>
       ) : (
         <>
@@ -59,7 +61,6 @@ const StackSidebar = ({
           </button>
         </>
       )}
-
     </aside>
   );
 };
