@@ -6,6 +6,7 @@ Dev Stack Builder is a responsive React-based website that helps developers expl
 ## 🔗 Live Website
 
 https://dev-stack-react-assignment-5.vercel.app/
+
 ## 📂 GitHub Repository
 
 https://github.com/nazifa-buildscodes/dev-stack-react-assignment-5
@@ -55,14 +56,15 @@ src
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_LINK
+git clone https://github.com/nazifa-buildscodes/dev-stack-react-assignment-5
+
 ```
 
 ### 2. Go to the project folder
 
 ```bash
-cd React-DevStack-assignment5
-```
+
+cd dev-stack-react-assignment-5```
 
 ### 3. Install dependencies
 
@@ -116,7 +118,7 @@ In this project, I used conditional rendering to show an empty stack message whe
 
 ```jsx
 {selectedStack.length === 0 ? (
-  <p>Your stack is empty.</p>
+  <p>Stack is empty yet.</p>
 ) : (
   <StackItems />
 )}
@@ -132,6 +134,6 @@ In this project, App.jsx passes selectedStack and handler functions to Technolog
 
 ## 👨‍💻 Author
 
-**Nazifa Nowsin**
+*Nazifa Nowsin*
 
 Built with React and Vite for Programming Hero Assignment 5.
