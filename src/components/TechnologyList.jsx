@@ -1,69 +1,58 @@
 import { useEffect, useState } from "react";
-import technologiesData from "../data/technologies.json";
 import TechnologyCard from "./TechnologyCard";
 import StackSidebar from "./StackSidebar";
+import technologiesData from "../data/technologies.json";
 
 const TechnologyList = ({
   selectedStack,
   onAddToStack,
   onRemoveFromStack,
-  onRemoveAll
+  onRemoveAll,
 }) => {
   const [technologies, setTechnologies] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadTechnologies = () => {
-      setTechnologies(technologiesData);
-      setLoading(false);
-    };
-
-    loadTechnologies();
+    setTechnologies(technologiesData);
+    setLoading(false);
   }, []);
-
-  if (loading) {
-    return (
-      <section
-        className="technology-section"
-        id="technologies"
-      >
-        <div className="section-container">
-          <div className="loading-message">
-            Loading technologies...
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section
-      className="technology-section"
+      className="technologies-section"
       id="technologies"
     >
-      <div className="section-container">
+      <div className="section-heading">
+        <h2>
+          Explore the <span>Technologies</span>
+        </h2>
 
-        <div className="section-heading">
-          <h2>
-            Explore the <span>Technologies</span>
-          </h2>
+        <p>
+          Pick one technology per category to build your ideal stack.
+        </p>
+      </div>
 
-          <p>
-            Pick one technology per category to build your ideal stack.
-          </p>
-        </div>
-
-        <div className="technology-layout">
-
+      {loading ? (
+        <p className="loading-text">
+          Loading technologies...
+        </p>
+      ) : (
+        <div className="technologies-layout">
           <div className="technology-grid">
-            {technologies.map((technology) => (
-              <TechnologyCard
-                key={technology.id}
-                technology={technology}
-                selectedStack={selectedStack}
-                onAddToStack={onAddToStack}
-              />
-            ))}
+            {technologies.map((technology) => {
+              const isSelected = selectedStack.some(
+                (item) => item.id === technology.id
+              );
+
+              return (
+                <TechnologyCard
+                  key={technology.id}
+                  technology={technology}
+                  isSelected={isSelected}
+                  onAddToStack={onAddToStack}
+                />
+              );
+            })}
           </div>
 
           <StackSidebar
@@ -71,10 +60,8 @@ const TechnologyList = ({
             onRemoveFromStack={onRemoveFromStack}
             onRemoveAll={onRemoveAll}
           />
-
         </div>
-
-      </div>
+      )}
     </section>
   );
 };

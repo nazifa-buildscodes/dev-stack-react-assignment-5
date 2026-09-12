@@ -4,7 +4,6 @@ const Hero = () => {
   return (
     <section className="hero" id="home">
       <div className="hero-container">
-
         <div className="hero-content">
           <h1>
             Build Your Ideal
@@ -22,7 +21,7 @@ const Hero = () => {
               Explore Technologies
             </a>
 
-            <a href="#about" className="hero-secondary-btn">
+            <a href="#technologies" className="hero-secondary-btn">
               Learn More
             </a>
           </div>
@@ -34,7 +33,6 @@ const Hero = () => {
             alt="Development technology stack"
           />
         </div>
-
       </div>
     </section>
   );

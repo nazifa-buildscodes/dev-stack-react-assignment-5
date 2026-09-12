@@ -1,20 +1,18 @@
 const TechnologyCard = ({
   technology,
-  selectedStack,
-  onAddToStack
+  isSelected,
+  onAddToStack,
 }) => {
-
-const isAdded = selectedStack.some(
-  (item) => item.id === technology.id
-);
-
   return (
-    <article className="technology-card">
-
-      <div className="card-top">
+    <article
+      className={`technology-card ${
+        isSelected ? "selected-card" : ""
+      }`}
+    >
+      <div className="technology-card-top">
         <img
           src={technology.icon}
-          alt={`${technology.name} icon`}
+          alt={technology.name}
           className="technology-icon"
         />
 
@@ -25,12 +23,10 @@ const isAdded = selectedStack.some(
 
       <h3>{technology.name}</h3>
 
-      <p className="technology-description">
-        {technology.description}
-      </p>
+      <p>{technology.description}</p>
 
       <div className="technology-meta">
-        <span className="category-chip">
+        <span className="category">
           {technology.category}
         </span>
 
@@ -39,18 +35,19 @@ const isAdded = selectedStack.some(
         </span>
 
         <span className="rating">
-          ★ {technology.rating}
+          ⭐ {technology.rating}
         </span>
       </div>
 
-     <button
-  className={`add-stack-btn ${isAdded ? "added" : ""}`}
-  onClick={() => onAddToStack(technology)}
-  disabled={isAdded}
->
-  {isAdded ? "✓ Added to Stack" : "Add to Stack"}
-</button>
-
+      <button
+        className={`add-stack-btn ${
+          isSelected ? "selected-button" : ""
+        }`}
+        onClick={() => onAddToStack(technology)}
+        disabled={isSelected}
+      >
+        {isSelected ? "✓ Added to Stack" : "Add to Stack"}
+      </button>
     </article>
   );
 };
