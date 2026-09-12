@@ -1164,3 +1164,113 @@ main {
     padding: 28px 16px;
   }
 }
+
+/* =========================
+   Mobile Footer Improvement
+========================= */
+
+@media (max-width: 768px) {
+  .footer {
+    margin-top: 40px;
+    padding: 42px 20px 22px;
+  }
+
+  .footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+    text-align: left;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .footer-brand p {
+    max-width: 310px;
+    margin: 0 0 18px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .social-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .social-links a {
+    font-size: 12px;
+  }
+
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .footer-column h4 {
+    margin: 0 0 4px;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+  }
+
+  .footer-column a {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 34px;
+    padding-top: 20px;
+  }
+
+  .footer-bottom p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .footer-bottom div {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-bottom a {
+    font-size: 11px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 420px) {
+  .footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .footer-container {
+    gap: 28px 18px;
+  }
+
+  .footer-brand p {
+    max-width: 280px;
+    font-size: 12px;
+  }
+
+  .footer-column a {
+    font-size: 11px;
+  }
+}
