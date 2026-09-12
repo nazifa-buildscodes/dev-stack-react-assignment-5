@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import TechnologyList from "./components/TechnologyList";
 import Footer from "./components/Footer";
+
 function App() {
   const [selectedStack, setSelectedStack] = useState([]);
 
@@ -21,7 +22,7 @@ function App() {
 
     setSelectedStack((currentStack) => [
       ...currentStack,
-      technology
+      technology,
     ]);
 
     toast.success(`${technology.name} added to your stack.`);
@@ -66,13 +67,17 @@ function App() {
         />
       </main>
 
-<Footer />
-
+      <Footer />
 
       <ToastContainer
-  position="bottom-right"
-  autoClose={2000}
-/>
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
     </>
   );
 }

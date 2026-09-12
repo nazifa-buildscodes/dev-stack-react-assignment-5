@@ -453,7 +453,7 @@ ol {
 }
 
 .hero-image img {
-  width: min(100%, 350px);
+  width: min(100%, 420px);
   height: auto;
   object-fit: contain;
 }
