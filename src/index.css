@@ -103,9 +103,9 @@ ol {
   margin: 0 auto;
 }
 
-/* =========================================================
-   NAVBAR
-========================================================= */
+/* =========================
+   Navbar
+========================= */
 
 .navbar {
   position: sticky;
@@ -113,90 +113,102 @@ ol {
   z-index: 1000;
   width: 100%;
   background: rgba(255, 255, 255, 0.97);
-  border-bottom: 1px solid #edf0f5;
+  border-bottom: 1px solid #eef0f4;
   backdrop-filter: blur(12px);
 }
 
 .navbar-container {
-  min-height: 72px;
+  width: min(1140px, 100%);
+  min-height: 64px;
+  margin: 0 auto;
+  padding: 0 20px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
 }
 
+/* Brand */
+
 .brand {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   flex-shrink: 0;
+  text-decoration: none;
 }
 
 .brand-logo {
-  width: 25px;
-  height: 25px;
-  display: inline-flex;
+  width: 24px;
+  height: 24px;
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 7px;
+
+  border-radius: 6px;
   background: var(--gradient);
-  color: var(--white);
+  color: #ffffff;
+
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: -0.5px;
 }
 
 .brand-name {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 750;
+
   background: var(--gradient);
-  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
+
+/* Desktop Navigation */
 
 .nav-links {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 28px;
 }
 
 .nav-links a {
   position: relative;
-  color: var(--secondary-text);
+
+  color: #64748b;
   font-size: 13px;
   font-weight: 500;
-  transition: color 0.2s ease;
+
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    font-weight 0.2s ease;
 }
+
+.nav-links a:hover {
+  color: #e91e8c;
+  font-weight: 700;
+}
+
+.nav-links a.active {
+  color: #e91e8c;
+  font-weight: 700;
+}
+
+/* No underline or bottom border */
 
 .nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-  width: 0;
-  height: 2px;
-  border-radius: 10px;
-  background: var(--gradient);
-  transition: width 0.2s ease;
+  display: none;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-  color: #e62991;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
-}
+/* Authentication */
 
 .auth-buttons {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   flex-shrink: 0;
 }
 
@@ -204,54 +216,145 @@ ol {
 .sign-up {
   border: none;
   background: transparent;
+  font-family: inherit;
   font-size: 13px;
-  font-weight: 500;
+  cursor: pointer;
 }
 
 .sign-in {
   color: #475569;
+  transition: color 0.2s ease;
 }
 
 .sign-in:hover {
-  color: #e62991;
+  color: #e91e8c;
 }
 
 .sign-up {
-  padding: 11px 20px;
+  padding: 10px 18px;
   border-radius: 999px;
+
   background: var(--gradient);
-  color: var(--white);
+  color: #ffffff;
   font-weight: 700;
-  box-shadow: 0 5px 14px rgba(237, 36, 125, 0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .sign-up:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(237, 36, 125, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(236, 72, 153, 0.22);
 }
+
+/* Mobile Menu Button */
 
 .menu-btn {
   display: none;
+
   width: 38px;
   height: 38px;
-  align-items: center;
-  justify-content: center;
+  padding: 0;
+
   border: none;
-  border-radius: 8px;
   background: transparent;
-  color: var(--primary-text);
+
+  color: #111827;
   font-size: 25px;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.menu-btn:hover {
-  background: #f8fafc;
-}
+/* Mobile Navigation */
 
 .mobile-nav {
   display: none;
 }
 
+/* =========================
+   Mobile Navbar
+========================= */
+
+@media (max-width: 768px) {
+  .navbar-container {
+    min-height: 60px;
+    padding: 0 16px;
+
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .brand {
+    justify-self: center;
+  }
+
+  .brand-name {
+    font-size: 16px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .auth-buttons {
+    justify-self: end;
+    gap: 7px;
+  }
+
+  .sign-in {
+    font-size: 12px;
+  }
+
+  .sign-up {
+    padding: 8px 13px;
+    font-size: 12px;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    padding: 10px 16px 16px;
+
+    background: #ffffff;
+    border-top: 1px solid #f1f3f5;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  }
+
+  .mobile-nav a {
+    display: block;
+
+    padding: 13px 10px;
+    border-radius: 8px;
+
+    color: #475569;
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+    transition:
+      color 0.2s ease,
+      background 0.2s ease,
+      font-weight 0.2s ease;
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav a.active {
+    color: #e91e8c;
+    background: #fff5fb;
+    font-weight: 700;
+  }
+}
 /* =========================================================
    HERO
 ========================================================= */

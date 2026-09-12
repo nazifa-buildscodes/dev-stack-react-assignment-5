@@ -1,40 +1,84 @@
 import { useEffect, useState } from "react";
 
+const navItems = [
+  {
+    label: "Home",
+    target: "home",
+  },
+  {
+    label: "Technologies",
+    target: "technologies",
+  },
+  {
+    label: "Projects",
+    target: "technologies",
+  },
+  {
+    label: "About",
+    target: "home",
+  },
+  {
+    label: "Contact",
+    target: "contact",
+  },
+];
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState(
-    window.location.hash || "#home"
-  );
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const handleHashChange = () => {
-      setActiveSection(window.location.hash || "#home");
+    const handleScroll = () => {
+      const sections = ["home", "technologies", "contact"];
+
+      let currentSection = "home";
+
+      sections.forEach((sectionId) => {
+        const section = document.getElementById(sectionId);
+
+        if (section) {
+          const sectionTop = section.offsetTop - 140;
+
+          if (window.scrollY >= sectionTop) {
+            currentSection = sectionId;
+          }
+        }
+      });
+
+      setActiveSection(currentSection);
     };
 
-    window.addEventListener("hashchange", handleHashChange);
+    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
 
     return () => {
-      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const handleMenuClick = () => {
-    setMenuOpen((currentState) => !currentState);
-  };
-
-  const closeMenu = () => {
+  const handleNavClick = (target) => {
+    setActiveSection(target);
     setMenuOpen(false);
+
+    const section = document.getElementById(target);
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
-  const handleNavClick = (section) => {
-    setActiveSection(section);
-    closeMenu();
+  const handleMenuClick = () => {
+    setMenuOpen((previousState) => !previousState);
   };
 
   return (
     <header className="navbar">
       <div className="navbar-container">
-        {/* Hamburger - Mobile */}
+        {/* Mobile Menu Button */}
         <button
           className="menu-btn"
           onClick={handleMenuClick}
@@ -48,7 +92,10 @@ const Navbar = () => {
         <a
           href="#home"
           className="brand"
-          onClick={() => handleNavClick("#home")}
+          onClick={(event) => {
+            event.preventDefault();
+            handleNavClick("home");
+          }}
         >
           <span className="brand-logo">DS</span>
           <span className="brand-name">Dev Stack</span>
@@ -56,50 +103,28 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="nav-links">
-          <a
-            href="#home"
-            className={activeSection === "#home" ? "active" : ""}
-            onClick={() => handleNavClick("#home")}
-          >
-            Home
-          </a>
-
-          <a
-            href="#technologies"
-            className={
-              activeSection === "#technologies" ? "active" : ""
-            }
-            onClick={() => handleNavClick("#technologies")}
-          >
-            Technologies
-          </a>
-
-          <a
-            href="#projects"
-            className={activeSection === "#projects" ? "active" : ""}
-            onClick={() => handleNavClick("#projects")}
-          >
-            Projects
-          </a>
-
-          <a
-            href="#about"
-            className={activeSection === "#about" ? "active" : ""}
-            onClick={() => handleNavClick("#about")}
-          >
-            About
-          </a>
-
-          <a
-            href="#contact"
-            className={activeSection === "#contact" ? "active" : ""}
-            onClick={() => handleNavClick("#contact")}
-          >
-            Contact
-          </a>
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={`#${item.target}`}
+              className={
+                activeSection === item.target &&
+                item.label !== "Projects" &&
+                item.label !== "About"
+                  ? "active"
+                  : ""
+              }
+              onClick={(event) => {
+                event.preventDefault();
+                handleNavClick(item.target);
+              }}
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
 
-        {/* Authentication */}
+        {/* Authentication Buttons */}
         <div className="auth-buttons">
           <button className="sign-in">Sign In</button>
           <button className="sign-up">Sign Up</button>
@@ -109,47 +134,25 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       {menuOpen && (
         <nav className="mobile-nav">
-          <a
-            href="#home"
-            className={activeSection === "#home" ? "active" : ""}
-            onClick={() => handleNavClick("#home")}
-          >
-            Home
-          </a>
-
-          <a
-            href="#technologies"
-            className={
-              activeSection === "#technologies" ? "active" : ""
-            }
-            onClick={() => handleNavClick("#technologies")}
-          >
-            Technologies
-          </a>
-
-          <a
-            href="#projects"
-            className={activeSection === "#projects" ? "active" : ""}
-            onClick={() => handleNavClick("#projects")}
-          >
-            Projects
-          </a>
-
-          <a
-            href="#about"
-            className={activeSection === "#about" ? "active" : ""}
-            onClick={() => handleNavClick("#about")}
-          >
-            About
-          </a>
-
-          <a
-            href="#contact"
-            className={activeSection === "#contact" ? "active" : ""}
-            onClick={() => handleNavClick("#contact")}
-          >
-            Contact
-          </a>
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={`#${item.target}`}
+              className={
+                activeSection === item.target &&
+                item.label !== "Projects" &&
+                item.label !== "About"
+                  ? "active"
+                  : ""
+              }
+              onClick={(event) => {
+                event.preventDefault();
+                handleNavClick(item.target);
+              }}
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
       )}
     </header>
